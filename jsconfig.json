@@ -1,0 +1,11 @@
+// jsconfig.json (in your project root)
+{
+  "compilerOptions": {
+    "baseUrl": ".", // <--- 🎯 ADD THIS LINE
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
+  }
+}
