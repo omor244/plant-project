@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server'
 // import admin from '@/lib/firebaseAdmin';
 
 
-
+export const runtime = 'edge';
 
 // This function can be marked `async` if using `await` inside
 export async function  proxy(request) {
@@ -26,17 +26,6 @@ export async function  proxy(request) {
     if (!token) {
         return NextResponse.redirect(new URL("/login", request.url));
     }
-
-    // try {
-    //     const decodedUser = await admin.auth().verifyIdToken(token);
-    //     console.log("User:", decodedUser);
-    //     // you may attach info to request if needed
-    //     return NextResponse.next();
-    // }
-    
-    // catch (err) {
-    //     return NextResponse.redirect(new URL("/", request.url));
-    // }
 
  
 
