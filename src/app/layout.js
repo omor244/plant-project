@@ -5,7 +5,9 @@ import "./globals.css";
 import Navber from "@/Components/Navber/Navber";
 import Footer from "@/Components/Footer/Footer";
 import AuthProvider from "@/Context/AuthProvider";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+import { Toaster } from "sonner";
+
 
 
 const geistSans = Geist({
@@ -31,12 +33,16 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
         
-
+       
         <AuthProvider>
+     
+          <Toaster richColors position="top-center" />
               <Navber></Navber>
             {children}
               <Footer />
+          
         </AuthProvider>
+          
      
       </body>
     </html>

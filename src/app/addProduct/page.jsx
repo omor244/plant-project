@@ -1,6 +1,7 @@
 'use client';
 
 import axios from "axios";
+import { toast } from "sonner";
 
 
 const AddProduct = () => {
@@ -33,6 +34,7 @@ const AddProduct = () => {
                 
                 if (res.data.insertedId) {
                     console.log(res.data)
+                    toast.success('successfully added')
                 }
         })
 
