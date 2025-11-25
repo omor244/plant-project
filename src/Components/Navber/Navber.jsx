@@ -28,7 +28,7 @@ const Navber = () => {
     }
 
     return (
-        <div className="navbar bg-base-100 shadow-sm px-12">
+        <div className="navbar bg-base-100 shadow-sm lg:px-12">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -37,9 +37,10 @@ const Navber = () => {
                     <ul
                         tabIndex="-1"
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                        <li><Link href={'/plants'}>Item 1</Link></li>
-
-                        <li><a>Item 3</a></li>
+                        <li><Link href={'/'}>Home</Link></li>
+                        <li><Link href={'/Plants'}>plants</Link></li>
+                        <li><Link href={'/addProduct'}>Add Product</Link></li>
+                        <li><Link href={'/ManageProducts'}>Manage Products</Link></li>
                     </ul>
                 </div>
                 <Link href={'/'} className=" text-xl"><img className="max-w-52" src={"https://i.ibb.co.com/HfPhXZ3y/logo.png"} alt="" /></Link>
@@ -53,7 +54,7 @@ const Navber = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link href={'/login'} className="btn outline-primary  outline-2 font-medium text-lg hover:text-white px-12 hover:bg-primary rounded-full mr-12">Login</Link>
+              
                 
                 {
                     user ? <>
@@ -86,7 +87,7 @@ const Navber = () => {
                                 </li>
                             </ul>
                         </div>
-                    </> : ''
+                    </> : <><Link href={'/login'} className="btn outline-primary  outline-2 font-medium text-lg hover:text-white px-12 hover:bg-primary  rounded-full mr-12">Login</Link> </>
                 }
             </div>
         </div>
