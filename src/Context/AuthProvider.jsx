@@ -4,8 +4,8 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import AuthContext from "./AuthContex";
 import auth from "@/Components/Firebase/Firebase";
 import { useEffect, useState } from "react";
-import { information } from "@/proxy";
-// import { useState } from "react";
+
+
 
 
 const AuthProvider = ({ children }) => {
