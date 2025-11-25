@@ -22,8 +22,9 @@ const Register = () => {
         googlelogin()
             .then(async (res) => {
                 console.log(res.user)
+
                 const token = await res.user.getIdToken();
-                Cookies.set("fbToken", token, { path: "/" });
+                Cookies.set("fbToken", token, { path: "/", secure: true, sameSite: "Lax" });
                 router.push('/')
                 console.log('fb token ', token)
             })
@@ -41,9 +42,10 @@ const Register = () => {
                 console.log(res.user)
                 
                      
-                router.push('/')
                 const token = await res.user.getIdToken();
-                Cookies.set("fbToken", token, { path: "/" })
+                Cookies.set("fbToken", token, { path: "/", secure: true, sameSite: "Lax" });
+                router.push('/')
+                
                 updateuser({ displayName: data.name, photoURL: data.image })
                     
                     .then(async (res) => {

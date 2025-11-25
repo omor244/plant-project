@@ -24,10 +24,12 @@ const Login = () => {
                 console.log(res.user)
                 router.push('/')
 
-                const token = await res.user.getIdToken();
-                Cookies.set("fbToken", token, { path: "/" });
 
-                console.log('fb token ',token)
+                const token = await res.user.getIdToken();
+                Cookies.set("fbToken", token, { path: "/", secure: true, sameSite: "Lax" });
+                router.push('/')
+
+                console.log('fb token ', token)
             })
             .catch(err => {
                 console.log(err)
@@ -40,13 +42,13 @@ const Login = () => {
             .then(async (res) => {
                 console.log(res.user)
                 const token = await res.user.getIdToken();
-                Cookies.set("fbToken", token, { path: "/" });
+                Cookies.set("fbToken", token, { path: "/", secure: true, sameSite: "Lax" });
                 router.push('/')
                 console.log('fb token ', token)
             })
             .catch(err => {
-            console.log(err)
-        })
+                console.log(err)
+            })
     }
     return (
         <div className='flex justify-center items-center min-h-screen bg-white'>
@@ -121,7 +123,7 @@ const Login = () => {
                     <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
                 </div>
                 <div
-                   onClick={handleGoogleSignIn}
+                    onClick={handleGoogleSignIn}
                     className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'
                 >
                     <FcGoogle size={32} />
