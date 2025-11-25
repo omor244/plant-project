@@ -14,7 +14,7 @@ const Details =  () => {
     const router = useRouter()
 
     useEffect(() => {
-        axios(`http://localhost:3001/plants/${id}`)
+        axios(`https://nextjs-server-six.vercel.app/plants/${id}`)
             .then(res => {
                 console.log(res.data)
                 setplant(res.data)

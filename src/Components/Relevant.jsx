@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 
+
 const Relevant = async () => {
 
     const categories = [
@@ -9,10 +10,10 @@ const Relevant = async () => {
         { title: "Air Purifiers", desc: "Cleans up your home air", icon: "💨" },
     ];
 
-    const plants = await fetch('http://localhost:3001/plants')
+    const plants = await fetch('https://nextjs-server-six.vercel.app/plants')
     const posts = await plants.json()
  
-    console.log(posts)
+   
    
        
  

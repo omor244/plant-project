@@ -2,7 +2,7 @@ import PlantCard from '@/Components/PlantCard/PlantCard';
 
 const page = async () => {
 
-    const plants = await fetch('http://localhost:3001/allplants');
+    const plants = await fetch('https://nextjs-server-six.vercel.app/allplants');
 
     const posts = await plants.json();
 

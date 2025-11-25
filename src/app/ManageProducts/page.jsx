@@ -16,7 +16,7 @@ const ManageProducts =  () => {
     
     useEffect(() => {
 
-        axios('http://localhost:3001/allplants')
+        axios('https://nextjs-server-six.vercel.app/allplants')
             .then(res => {
                 setpost(res.data)
                 console.log(res.data)
@@ -29,7 +29,7 @@ const ManageProducts =  () => {
     const handeldelete = (id) => {
         console.log(id)
 
-        axios.delete('http://localhost:3001/plants', { data: { id } })
+        axios.delete('https://nextjs-server-six.vercel.app/plants', { data: { id } })
             .then(res => {
                 console.log(res.data)
                 if (res.data.deletedCount) {
