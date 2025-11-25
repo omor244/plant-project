@@ -26,7 +26,7 @@ const Login = () => {
 
 
                 const token = await res.user.getIdToken();
-                Cookies.set("fbToken", token, { path: "/", secure: true, sameSite: "Lax" });
+                Cookies.set("fbToken", token, { path: "/"});
                 router.push('/')
 
                 console.log('fb token ', token)
@@ -42,7 +42,7 @@ const Login = () => {
             .then(async (res) => {
                 console.log(res.user)
                 const token = await res.user.getIdToken();
-                Cookies.set("fbToken", token, { path: "/", secure: true, sameSite: "Lax" });
+                Cookies.set("fbToken", token, { path: "/"});
                 router.push('/')
                 console.log('fb token ', token)
             })
