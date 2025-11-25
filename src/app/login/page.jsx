@@ -9,7 +9,7 @@ import { TbFidgetSpinner } from 'react-icons/tb';
 
 const Login = () => {
     const loading = false
-    const { loginuser } = useAuth()
+    const { loginuser, googlelogin } = useAuth()
     const router = useRouter()
     // form submit handler
     const handleSubmit = event => {
@@ -36,7 +36,17 @@ const Login = () => {
 
 
     const handleGoogleSignIn = () => {
-
+        googlelogin()
+            .then(async (res) => {
+                console.log(res.user)
+                const token = await res.user.getIdToken();
+                Cookies.set("fbToken", token, { path: "/" });
+                router.push('/')
+                console.log('fb token ', token)
+            })
+            .catch(err => {
+            console.log(err)
+        })
     }
     return (
         <div className='flex justify-center items-center min-h-screen bg-white'>
@@ -111,10 +121,10 @@ const Login = () => {
                     <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
                 </div>
                 <div
-
+                   onClick={handleGoogleSignIn}
                     className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'
                 >
-
+                    <FcGoogle size={32} />
 
                     <p>Continue with Google</p>
                 </div>
@@ -125,7 +135,7 @@ const Login = () => {
                         href={'/register'}
                         className='hover:underline hover:text-lime-500 text-gray-600'
                     >
-                        Sign up
+                        Register
                     </Link>
                     .
                 </p>

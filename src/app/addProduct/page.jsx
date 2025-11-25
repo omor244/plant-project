@@ -13,7 +13,7 @@ const AddProduct = () => {
             plantName: e.target.name.value,
             category: e.target.category.value,
             description: e.target.description.value,
-            thumbnail: e.target.thumbnail.value,
+            image: e.target.thumbnail.value,
             created_at: new Date(),
             downloads: 0,
             price: e.target.price.value,

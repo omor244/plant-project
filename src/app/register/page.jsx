@@ -8,7 +8,7 @@ import { FcGoogle } from 'react-icons/fc'
 import { TbFidgetSpinner } from 'react-icons/tb'
 import Cookies from "js-cookie";
 const Register = () => {
-    const { createUser } = useAuth()
+    const { createUser, googlelogin, updateuser } = useAuth()
     const router = useRouter()
   const loading = false
     const {
@@ -18,19 +18,43 @@ const Register = () => {
     } = useForm();
 
     const handleGoogleSignIn = async () => {
+
+        googlelogin()
+            .then(async (res) => {
+                console.log(res.user)
+                const token = await res.user.getIdToken();
+                Cookies.set("fbToken", token, { path: "/" });
+                router.push('/')
+                console.log('fb token ', token)
+            })
+            .catch(err => {
+                console.log(err)
+            })
       
     }
 
     const handleonSubmit =  (data ) => {
         console.log(data)
-
+ 
         createUser(data.email, data.password)
             .then( async (res) =>  {
                 console.log(res.user)
                 
+                     
                 router.push('/')
                 const token = await res.user.getIdToken();
-                Cookies.set("fbToken", token, { path: "/" });
+                Cookies.set("fbToken", token, { path: "/" })
+                updateuser({ displayName: data.name, photoURL: data.image })
+                    
+                    .then(async (res) => {
+                        
+                      
+
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+                
             })
             .catch(err => {
             console.log(err)
@@ -75,41 +99,25 @@ const Register = () => {
                                 {
                                     errors.name && <p>{errors.name.message}</p>
                                 }
+                            
                             </div>
                             {/* Image */}
-                            {/* <div>
-                                <label
-                                    htmlFor='image'
-                                    className='block mb-2 text-sm font-medium text-gray-700'
-                                >
-                                    Profile Image
-                                </label>
+                            <div>
+                                <label className="block text-sm mb-1">photoURL</label>
                                 <input
-                                    name='image'
-                                    {...register('image', {
-                                        required: true,
-                                        maxLength: {
-                                            value: 20,
-                                            message: 'You name is too longer'
-                                        }
-                                    })}
-                                    type='file'
-                                    id='image'
-                                    accept='image/*'
-                                    className='block w-full text-sm text-gray-500
-      file:mr-4 file:py-2 file:px-4
-      file:rounded-md file:border-0
-      file:text-sm file:font-semibold
-      file:bg-lime-50 file:text-lime-700
-      hover:file:bg-lime-100
-      bg-gray-100 border border-dashed border-lime-300 rounded-md cursor-pointer
-      focus:outline-none focus:ring-2 focus:ring-lime-400 focus:border-lime-400
-      py-2'
+                                    type="url"
+                                  
+                                    placeholder="photo URL"
+                                
+                                {...register('image', {
+                                    required: false,
+                                   
+                                })} 
+                                    
+                                    className="input input-bordered w-full bg-white/20 text-black   "
                                 />
-                                <p className='mt-1 text-xs text-gray-400'>
-                                    PNG, JPG or JPEG (max 2MB)
-                                </p>
-                            </div> */}
+                            </div>
+
                             <div>
                                 <label htmlFor='email' className='block mb-2 text-sm'>
                                     Email address

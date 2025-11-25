@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 const ManageProducts =  () => {
    
     const [posts, setpost] = useState([])
+    
     const router = useRouter()
    
 
@@ -28,11 +29,14 @@ const ManageProducts =  () => {
     const handeldelete = (id) => {
         console.log(id)
 
-        axios.delete('http://localhost:3001/plants', id)
+        axios.delete('http://localhost:3001/plants', { data: { id } })
             .then(res => {
                 console.log(res.data)
-                if (res.data.insertedId) {
-                
+                if (res.data.deletedCount) {
+                    const remainning = [...posts].filter(i => i._id !== id)
+                    setpost(remainning)
+
+                    console.log('after delet',remainning)
                 }
         })
     }

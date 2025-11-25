@@ -1,12 +1,12 @@
 'use client';
 
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut,  updateProfile } from "firebase/auth";
 import AuthContext from "./AuthContex";
 import auth from "@/Components/Firebase/Firebase";
 import { useEffect, useState } from "react";
 
 
-
+const googleProvide = new GoogleAuthProvider()
 
 const AuthProvider = ({ children }) => {
     const [user, setuser] = useState(null)
@@ -23,10 +23,20 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
+    const googlelogin = () => {
+
+        return  signInWithPopup(auth, googleProvide)
+    }
+
     const signoutuser = () => {
         
 
         return signOut(auth)
+    }
+
+    const updateuser = (updateedData) => {
+
+        return updateProfile(auth.currentUser, updateedData)
     }
 
     useEffect(() => {
@@ -48,6 +58,8 @@ const AuthProvider = ({ children }) => {
         loginuser,
         signoutuser, 
         user,
+        googlelogin,
+        updateuser
 
     };
 

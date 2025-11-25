@@ -74,13 +74,15 @@ const Navber = () => {
 
                             <ul
                                 tabIndex={-1}
-                                className="dropdown-content font-semibold menu bg-white/40 text-white rounded-box z-10 w-52 p-2 shadow-sm"
+                                className="dropdown-content font-semibold menu bg-secondary space-y-2 text-white rounded-box z-10 w-52 p-2 shadow-sm"
                             >
-                                <li className="bg-green-900 text-white">
+                                <li className="bg-primary text-white">
                                     <a>{user.displayName}</a>
                                 </li>
+                                <li ><Link className="bg-primary" href={'/ManageProducts'}>Manage Products</Link></li>
+                                <li><Link className="bg-primary" href={'/addProduct'}>Add Product</Link></li>
                                 <li>
-                                    <button className=" btn outline-2 bg-white/20 text-white font-medium text-lg outline-primary" onClick={handelsignout}>Sign Out</button>
+                                    <button className=" btn outline-2 bg-primary text-white font-medium text-lg outline-primary" onClick={handelsignout}>Sign Out</button>
                                 </li>
                             </ul>
                         </div>
